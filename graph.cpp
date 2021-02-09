@@ -2,12 +2,12 @@
 
 std::string num_direction;
 
+
 Graph::Graph(int num_v)
-{
-    std::vector<int> vect;
-    for (int i = 0; i < num_v; i++)
-    {
-        mNeighbors.push_back(vect);
+{ 
+    V vect;
+    for (int i=0; i<num_v; i++ ){
+        verts.push_back(vect);
     }
 }
 
@@ -15,40 +15,60 @@ bool Graph::add_Edge(int v1, int v2)
 {
     if (num_direction == "one")
     {
-        for (int i = 0; i < mNeighbors[v1].size(); i++)
+        for (int i = 0; i < verts[v1].mNeighbors.size(); i++)
         {
-            if (v2 == mNeighbors[v1][i])
+            if (v2 == verts[v1].mNeighbors[i])
             {
                 return false;
             }
         }
-        mNeighbors[v1].push_back(v2);
+        verts[v1].mNeighbors.push_back(v2);
         return true;
     }
     else if (num_direction == "two")
     {
-        for (int i = 0; i < mNeighbors[v1].size(); i++)
+        for (int i = 0; i < verts[v1].mNeighbors.size(); i++)
         {
-            if (v2 == mNeighbors[v1][i])
+            if (v2 == verts[v1].mNeighbors[i])
             {
                 return false;
             }
         }
-        for (int i = 0; i < mNeighbors[v2].size(); i++)
+        for (int i = 0; i < verts[v2].mNeighbors.size(); i++)
         {
-            if (v1 == mNeighbors[v2][i])
+            if (v1 == verts[v2].mNeighbors[i])
             {
                 return false;
             }
         }
-        mNeighbors[v1].push_back(v2);
-        mNeighbors[v2].push_back(v1);
+        verts[v1].mNeighbors.push_back(v2);
+        verts[v2].mNeighbors.push_back(v1);
         return true;
     }
     return false;
 }
 
-std::vector<int> Graph::get_Neighbors(int v)
+V Graph::get_Neighbors(int v)
 {
-    return mNeighbors[v];
+    return verts[v];
+}
+
+void Graph::explore( V &v, int &start) {
+    v.visited_vert();
+    v.previsit(start);
+    for( int i=0; i<v.mNeighbors.size(); i++){
+        if ( verts[v.mNeighbors[i]].visited == false ) {
+            explore(verts[v.mNeighbors[i]], start+=1 );
+        }
+    }
+    v.postvisit(start+=1);
+}
+
+void Graph::dfs() {
+    for( int i=0; i<verts.size(); i++) {
+        if ( verts[i].visited == false ) {
+            int start = 1;
+            explore(verts[i], start); 
+        }
+    }
 }

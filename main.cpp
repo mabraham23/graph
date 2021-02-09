@@ -6,7 +6,7 @@
 
 int main()
 {
-    std::ifstream file("three_two_b.txt");
+    std::ifstream file("disconnected.txt");
     std::string line;
     int num_v;
     int num_e;
@@ -46,14 +46,21 @@ int main()
     std::string a[] = {"a", "b", "c", "d", "e", "f", "g", "h", "i"};
     for (int i = 0; i < num_v; i++)
     {
-        std::vector<int> vect;
+        V vect;
         vect = graph.get_Neighbors(i);
-        std::cout << "The neighbors for vertice " << a[i] << " are: ";
-        for (int j = 0; j < vect.size(); j++)
+        std::cout << "Vertice " << a[i] << " Neighbors: ";
+        for (int j = 0; j < vect.mNeighbors.size(); j++)
         {
-            int z = vect[j];
+            int z = vect.mNeighbors[j];
             std::cout << a[z] << " ";
         }
         std::cout << "\n";
+    }
+    std::cout << "\n";
+    // int start = 1;
+    // graph.explore(graph.verts[0], start);
+    graph.dfs();
+    for ( int i=0; i < graph.verts.size(); i++ ) {
+        std::cout << "Vertex: " << a[i] << " Pre: " << graph.verts[i].pre << " Post: " << graph.verts[i].post << std::endl; 
     }
 }
