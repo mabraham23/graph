@@ -15,7 +15,7 @@ public:
     bool add_Edge(int v1, int v2);
     bool is_Edge(int v1, int v2);
     V get_Neighbors(int v);
-    void explore( V &v, int &start);
+    void explore( V &v, int &start, int &cc);
     void dfs();
 
     std::vector <V> verts;

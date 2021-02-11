@@ -6,7 +6,7 @@
 
 int main()
 {
-    std::ifstream file("disconnected.txt");
+    std::ifstream file("practice.txt");
     std::string line;
     int num_v;
     int num_e;
@@ -43,7 +43,7 @@ int main()
         // std::cout << "this is val1: " << val1 << std::endl;
         // std::cout << "this is val2: " << val2 << std::endl;
     }
-    std::string a[] = {"a", "b", "c", "d", "e", "f", "g", "h", "i"};
+    std::string a[] = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"};
     for (int i = 0; i < num_v; i++)
     {
         V vect;
@@ -61,6 +61,6 @@ int main()
     // graph.explore(graph.verts[0], start);
     graph.dfs();
     for ( int i=0; i < graph.verts.size(); i++ ) {
-        std::cout << "Vertex: " << a[i] << " Pre: " << graph.verts[i].pre << " Post: " << graph.verts[i].post << std::endl; 
+        std::cout << "Vertex: " << a[i] << " Pre: " << graph.verts[i].pre << " Post: " << graph.verts[i].post << " CC: " << graph.verts[i].cc << std::endl; 
     }
 }

@@ -15,3 +15,7 @@ void V::previsit( int num ){
 void V::postvisit( int num ){
     post = num;
 }
+
+void V::setcc( int num ){
+    cc = num;
+}

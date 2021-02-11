@@ -53,22 +53,24 @@ V Graph::get_Neighbors(int v)
     return verts[v];
 }
 
-void Graph::explore( V &v, int &start) {
+void Graph::explore( V &v, int &start, int &cc) {
     v.visited_vert();
     v.previsit(start);
+    v.setcc(cc);
     for( int i=0; i<v.mNeighbors.size(); i++){
         if ( verts[v.mNeighbors[i]].visited == false ) {
-            explore(verts[v.mNeighbors[i]], start+=1 );
+            explore(verts[v.mNeighbors[i]], start+=1, cc);
         }
     }
     v.postvisit(start+=1);
 }
 
 void Graph::dfs() {
+    int start = 0;
+    int cc = 0;
     for( int i=0; i<verts.size(); i++) {
         if ( verts[i].visited == false ) {
-            int start = 1;
-            explore(verts[i], start); 
+            explore(verts[i], start+=1, cc+=1); 
         }
     }
 }
