@@ -3,7 +3,7 @@ NAME=graph
 all: graph  
 
 run: graph 
-	./$(NAME).exe
+	./$(NAME).exe > 3d-graph-1000-4.txt
 
 graph:
 	g++ *.cpp -o $(NAME).exe

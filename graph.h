@@ -17,8 +17,9 @@ public:
     V get_Neighbors(int v);
     void explore( V &v, int &start, int &cc);
     void dfs();
-
+    bool inNeighbors( V vertice_object, int vertice);
     std::vector <V> verts;
+    void insert( std::vector<int> &arr, int value);
 };
 
 #endif // GRAPH
